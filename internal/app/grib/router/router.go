@@ -1,7 +1,7 @@
 package router
 
 import (
-	"fmt"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
@@ -14,10 +14,10 @@ type Router struct {
 	Logger *logrus.Logger
 }
 
-func InitializeRouter (Engine *gin.Engine, DB *gorm.DB, Logger *logrus.Logger) *Router {
+func InitializeRouter(Engine *gin.Engine, DB *gorm.DB, Logger *logrus.Logger) *Router {
 	r := &Router{
 		Engine: Engine,
-		DB: DB,
+		DB:     DB,
 		Logger: Logger,
 	}
 	r.Engine.Use(gin.Logger())
@@ -25,6 +25,8 @@ func InitializeRouter (Engine *gin.Engine, DB *gorm.DB, Logger *logrus.Logger) *
 	return r
 }
 
-func (r *Router)SetupHandler () {
-	fmt.Println("Setup handler")
+func (r *Router) SetupHandler() {
+	r.Engine.GET("/test", func(ctx *gin.Context) {
+		ctx.String(http.StatusOK, "Server is still runing")
+	})
 }

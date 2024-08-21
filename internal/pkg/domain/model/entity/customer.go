@@ -1,7 +1,13 @@
 package entity
 
+var CustumersTableName = "customers"
+
 type Customer struct {
 	User
-	WalletID uint `gorm:"column:wallet_id"`
-	Wallet
+	WalletID uint
+	Wallet Wallet
+}
+
+func (*Customer) TableName() string {
+	return CustumersTableName
 }

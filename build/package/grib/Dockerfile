@@ -21,7 +21,6 @@ RUN apk --update add --no-cache bash gcc musl-dev git mercurial openssh curl && 
 
 WORKDIR /${APP_NAME}
 
-CMD go mod init grib
 CMD air -c ./config/$SERVICE/.air.toml
 
 EXPOSE ${PORT}

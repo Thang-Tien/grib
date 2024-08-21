@@ -21,17 +21,17 @@ func main() {
 		Port:    os.Getenv("DB_PORT"),
 		Charset: "utf8mb4",
 	}
-	logger.Info("Init database")
+	logger.Info("Initializing database...")
 	db, err := database.NewDB(dbConfig, logger)
 	if err != nil {
 		logger.Fatalln("Failed to connect database")
 		panic(err)
 	}
-	logger.Info("Init database successfully")
+	logger.Info("Initialize database successfully")
 
 	defer database.CloseDB(logger, db)
 
-	logger.Info("Migrate database")
+	logger.Info("Migrating database...")
 	err = migration.Migrate(db)
 	if err != nil {
 		logger.Fatalln("Failed to migrate database")

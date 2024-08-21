@@ -7,6 +7,6 @@ import (
 )
 
 func Migrate(DB *gorm.DB) error {
-	err := DB.AutoMigrate(entity.Customer{})
+	err := DB.AutoMigrate(entity.Customer{}, entity.Driver{}, entity.Vehicle{}, entity.Wallet{})
 	return err
 }
