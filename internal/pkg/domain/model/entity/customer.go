@@ -5,7 +5,7 @@ var CustumersTableName = "customers"
 type Customer struct {
 	User
 	WalletID uint
-	Wallet Wallet
+	Wallet   Wallet
 }
 
 func (*Customer) TableName() string {
